@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 
-export const AddButton = styled.Button`
+export const AddButton = styled.button`
   margin-left: auto;
   margin-right: auto;
   margin-top: 24px;
