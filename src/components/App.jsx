@@ -8,7 +8,6 @@ export default class App extends React.Component {
     return (
       <section>
       <Searchbar></Searchbar>
-        <ImageList></ImageList> 
         </section>
     );
   }
