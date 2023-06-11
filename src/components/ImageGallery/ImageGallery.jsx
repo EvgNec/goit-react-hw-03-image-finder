@@ -17,6 +17,7 @@ export function ImageGallery({ images, openModal }) {
   );
 }
 
+
 ImageGallery.propTypes = {
   images: PropTypes.arrayOf(
     PropTypes.shape({
