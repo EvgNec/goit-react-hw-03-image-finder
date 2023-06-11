@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import { AddButton } from './Button.styled';
+import styles from './Button.module.css';
 
-export default function Button ({ onClick }) {
+export function Button({ onClick }) {
   return (
-    <AddButton type="button" onClick={onClick}>
+    <button className={styles.Button} type="button" onClick={onClick}>
       Load more
-    </AddButton>
+    </button>
   );
 }
 

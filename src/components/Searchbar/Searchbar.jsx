@@ -1,23 +1,55 @@
-import React from 'react';
+import { Component } from 'react';
+import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
+import styles from './Searchbar.module.css';
+import { IoSearch } from 'react-icons/io5';
 
-export default class Searchbar extends React.Component {
+export class Searchbar extends Component {
+  state = {
+    searchQery: '',
+  };
+
+  handleSearchQuery = event => {
+    this.setState({ searchQery: event.currentTarget.value.toLowerCase() });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    if (this.state.searchQery.trim() === '') {
+      toast.error('The input field is empty!');
+      return;
+    }
+
+    this.props.onSubmit(this.state.searchQery);
+    this.setState({ searchQery: '' });
+  };
+
   render() {
     return (
-      <header class="searchbar">
-  <form class="form">
-    <button type="submit" class="button">
-      <span class="button-label">Search</span>
-    </button>
+      <header className={styles.Searchbar} onSubmit={this.handleSubmit}>
+        <form className={styles.SearchForm}>
+          <button type="submit" className={styles['SearchForm-button']}>
+            <span className={styles['SearchForm-button-label']}>Search</span>
+            <IoSearch className={styles['SearchForm-icon']} />
+          </button>
 
-    <input
-      class="input"
-      type="text"
-      autocomplete="off"
-      autofocus
-      placeholder="Search images and photos"
-    />
-  </form>
-</header>
+          <input
+            className={styles['SearchForm-input']}
+            type="text"
+            name="searchQuery"
+            value={this.state.searchQery}
+            onChange={this.handleSearchQuery}
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+          />
+        </form>
+      </header>
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
